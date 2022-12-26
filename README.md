@@ -9,10 +9,10 @@
 ### Как работать с API CRUD:
 Работать с API CRUD можно через консоль или по средствам других приложений(postman, paw и д.р.)
 
-- для просмотра пользователей перейдите по адресу http://localhost:8080/
-- для создания пользователя http://localhost:8080/create
-- для удаления пользователя http://localhost:8080/delete
-- для удаления права в таблице 'permissions' http://localhost:8080/delete_permission
+- для просмотра пользователей перейдите по адресу http://localhost:9090/
+- для создания пользователя http://localhost:9090/create
+- для удаления пользователя http://localhost:9090/delete
+- для удаления права в таблице 'permissions' http://localhost:9090/delete_permission
 
 ### Стек технологий использованный в проекте:
 - Python 3.9
