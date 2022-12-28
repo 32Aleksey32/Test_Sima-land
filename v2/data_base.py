@@ -19,9 +19,8 @@ DATABASE_URL = f"postgresql+asyncpg://{os.getenv('USER')}:" \
                     f"{os.getenv('PASSWORD')}@{os.getenv('HOST')}:" \
                     f"{os.getenv('PORT')}/{os.getenv('NAME')}"
 
-# DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+
 engine = create_async_engine(DATABASE_URL, echo=True)
-# engine = create_async_engine(postgres_database)
 async_session = sessionmaker(engine, AsyncSession, expire_on_commit=False)
 
 
@@ -31,8 +30,6 @@ class Permission(Base):
     administrator = Column(String)
     readonly = Column(String)
     blocking = Column(String)
-
-# permissions = Permission.__table__
 
 
 class User(Base):
@@ -44,8 +41,6 @@ class User(Base):
     password = Column(String(20), nullable=False)
     date_of_birth = Column(String, nullable=False)
 
-# users = User.__table__
-
 
 # Создание базы данных
 def create_db():
@@ -56,14 +51,12 @@ def create_db():
     cursor.execute(f"create database {os.getenv('NAME')}")
     cursor.close()
     connection.close()
-    # logger.info(f'База данных создана')
 
 
 # Создание таблиц в базе данных
 async def create_tables():
     async with engine.begin() as conn:
         db = await conn.run_sync(Base.metadata.create_all)
-        # logger.info("Таблицы в базе данных созданы.")
         return db
 
 
@@ -80,20 +73,15 @@ async def filling_tables(async_session):
             )
             session.add(Permission(administrator="admin"))
             await session.commit()
-            # logger.info('Пользователь "админ" успешно создан.')
 
 
 async def main():
     create_db()
     await create_tables()
     await filling_tables(async_session)
-    # task1 = asyncio.create_task(create_tables())
-    # task2 = asyncio.create_task(filling_tables(async_session))
-    # await asyncio.gather(task1, task2)
-    # await engine.dispose()
 
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
-    # asyncio.run(main())
+
