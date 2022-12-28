@@ -3,9 +3,10 @@ from sqlalchemy.future import select
 from sqlalchemy.orm import Session
 
 from data_base import Permission, User
-from aiohttp import web
+
 
 class User_CRUD:
+
     def __init__(self, db_session: Session):
         self.db_session = db_session
 
@@ -26,15 +27,6 @@ class User_CRUD:
         users = select(User).order_by(User.id)
         perform = await self.db_session.execute(users)
         return perform.scalars().all()
-
-    # async def get_users(self):
-    #     users = select(User).order_by(User.id)
-    #     perform = await self.db_session.execute(users)
-    #     b = perform.scalars().all()
-    #     a = {'ddd': 'aaa'}
-    #     c = [a, b]
-    #
-    #     return c
 
     async def update_user(self, first_name, last_name,
                           login, password, date_of_birth):
