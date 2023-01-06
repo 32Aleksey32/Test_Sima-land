@@ -11,8 +11,7 @@ from sqlalchemy.future import select
 
 from data_base import Permission, User, engine
 
-# чтобы получить строку, подобную этой, запустите:
-# openssl rand -hex 32
+# чтобы получить строку, подобную этой, запустите: openssl rand -hex 32
 SECRET_KEY = "5787ecd3040f4cf2fa97db4b97ea74d8"
 ALGORITHM = "HS256"
 
@@ -111,7 +110,6 @@ async def get_current_user(db: AsyncSession = Depends(get_db),
     return user
 
 
-# Создает токен jwt
 async def create_access_token(data: dict, expires_delta: Optional[timedelta]):
     to_encode = data.copy()
     if expires_delta:
