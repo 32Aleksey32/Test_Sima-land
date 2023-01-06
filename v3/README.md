@@ -29,7 +29,7 @@ app(модуль для запуска), hasher(модуль хэширует п
 
 - Для регистрации пользователя, перейдите по адресу http://localhost:9090/registration.
 И отправьте данные в body в формате json. Например:
-```
+```bash
 {
     "first_name": "Иван",
     "last_name": "Иванов",
@@ -38,6 +38,7 @@ app(модуль для запуска), hasher(модуль хэширует п
     "date_of_birth": "01-01-1990"
 }
 ```
+
  - Для просмотра всех пользователей перейдите по адресу http://localhost:9090/users.
  - Для авторизации необходимо получить токен Bearer. Для этого перейдите по адресу http://localhost:9090/token
 и отправьте Ваш username и password в form-data.
@@ -46,13 +47,8 @@ app(модуль для запуска), hasher(модуль хэширует п
  - Для удаления пользователя (если вы являетесь им) и используя полученный токен 
 перейдите по адресу http://localhost:9090/delete/<id>.
 
-
-### Как запустить:
- - запустите модуль data_base.py
- - запустите модуль app.py
-
 ### Для работы с базой данных создайте файл .env со своими значениями или используйте данные по умолчанию:
-  ```
+  ```bash
   - NAME=test_db
   - USER=postgres
   - PASSWORD=postgres
@@ -60,4 +56,15 @@ app(модуль для запуска), hasher(модуль хэширует п
   - PORT=5432
   ```
 
+### Сборка и запуск:
+```bash
+git clone git@github.com:32Aleksey32/Test_Sima-land.git
+cd v3
+pip install virtualenv
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python data_base.py
+python app.py
+```
 
